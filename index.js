@@ -1,8 +1,15 @@
 import express from "express";
 import mogoose from "mongoose";
 import connectDB from "./config/db.js";
-connectDB()
+import userRoutes from "./routing/userRoutes.js";
+
+connectDB();
 const app=express();
 const port=5000;
+app.use(express.json());            //json format ?
+app.use('/api',userRoutes)          //api- prefix
 
-app.use(express.json());
+app.listen(port, () => 
+  {
+    console.log(`Server is running on http://localhost:${port}`);       // ?
+  });
